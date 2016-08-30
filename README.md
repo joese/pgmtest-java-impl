@@ -5,22 +5,23 @@ Test for prospect employees and consultants
 1 Programming tasks - Description
 ================================================================================
 
-We supply tests, but no implementations The tests are set up to catch UnsupportedOperationException so they do not fail.
-It is your job to implement at least 4 of the methods in ProgrammingTasks and an implementation of ```Stack```
+# What you need to do
+** It is your job to implement at least 4 of the methods in ```ProgrammingTasks``` and an implementation of ```Stack``` **
 
-The code shall be implemented under 
-src/main/java/com/pierceecom/pgmtest
+** We also like to see that you add some extra tests for the methods you implement **
 
 Interfaces for the contract to implement and stubs are under this path, and shall be used for implmentation, 
 Javadoc for what the methods do is provided in the code.
 
-The tests are under
-src/test/java/com/pierceecom/pgmtest
-- ProgrammingTastsTest
-- StackTest
+### Location of classes
+The code shall be implemented under 
+src/main/java/com/pierceecom/pgmtest
+- ```ProgrammingTasksImpl```
+- ```StackImpl```
 
-The stack should implement the iterator in LIFO order
+** The stack should implement the iterator in LIFO order **
 
+### Assessment
 The assessment will be based on following criterias:
 - Clean design
 - Reuse (of code and 3rd party products)
@@ -29,7 +30,19 @@ The assessment will be based on following criterias:
 - Java Knowledge Base
 - Coding style
 
-Observe that the tests supplied are just an initial set of tests, and more may be used to test your implementation.
+## Tests
+We supply tests, but no implementations The tests are set up to catch UnsupportedOperationException so they do not fail.
+We encourage you to also write extra tests.
+
+
+### Location of tests
+The tests are under
+src/test/java/com/pierceecom/pgmtest
+- ```ProgrammingTasksTest```
+- ```StackTest```
+
+
+*Observe that the tests supplied are just an initial set of tests, and more may be used to test your implementation.*
 
 ================================================================================
 2 AT THE INTERVIEW
