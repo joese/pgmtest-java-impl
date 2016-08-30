@@ -6,9 +6,9 @@ Test for prospect employees and consultants
 ================================================================================
 
 # What you need to do
-** It is your job to implement at least 4 of the methods in ```ProgrammingTasks``` and an implementation of ```Stack``` **
+**It is your job to implement at least 4 of the methods in ```ProgrammingTasks``` and an implementation of ```Stack```**
 
-** We also like to see that you add some extra tests for the methods you implement **
+**We also like to see that you add some extra tests for the methods you implement**
 
 Interfaces for the contract to implement and stubs are under this path, and shall be used for implmentation, 
 Javadoc for what the methods do is provided in the code.
@@ -19,7 +19,7 @@ src/main/java/com/pierceecom/pgmtest
 - ```ProgrammingTasksImpl```
 - ```StackImpl```
 
-** The stack should implement the iterator in LIFO order **
+**The stack should implement the iterator in LIFO order**
 
 ### Assessment
 The assessment will be based on following criterias:
