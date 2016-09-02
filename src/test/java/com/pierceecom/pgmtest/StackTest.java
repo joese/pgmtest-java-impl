@@ -1,7 +1,9 @@
 package com.pierceecom.pgmtest;
 
-import java.util.NoSuchElementException;
 import org.junit.Test;
+
+import java.util.NoSuchElementException;
+
 import static org.junit.Assert.*;
 
 /**
@@ -10,12 +12,12 @@ import static org.junit.Assert.*;
  */
 public class StackTest {
 
-    Stack<String> cut = new StackImpl<>();
+    private Stack<String> cut = new StackImpl<>();
 
     public StackTest() {
     }
 
-    @Test(expected = UnsupportedOperationException.class)
+    @Test(expected = NoSuchElementException.class)
     public void testStringStack() {
         assertTrue(cut.isEmpty());
         cut.push("A");
@@ -36,6 +38,24 @@ public class StackTest {
         assertTrue(cut.isEmpty());
         // Should throw exception NoSuchElementException
         cut.pop();
+    }
+
+    @Test()
+    public void testStringStack2() {
+        assertTrue(cut.isEmpty());
+        String expected = "";
+        for (int i = 0; i < 10; i++) {
+            cut.push(String.valueOf(i));
+            expected += String.valueOf(i);
+        }
+        assertEquals(10, cut.size());
+        String stack = "";
+        for (String item : cut) {
+            stack += item;
+        }
+        StringBuilder builder = new StringBuilder(expected);
+        assertEquals(builder.reverse().toString(), stack);
+        assertFalse(cut.isEmpty());
     }
 
 }

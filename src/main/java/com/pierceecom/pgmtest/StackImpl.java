@@ -1,36 +1,60 @@
 package com.pierceecom.pgmtest;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.Iterator;
 
 /**
- * TODO Implement stack here
+ * Implementation of Stack
  *
- * @author pejo
+ * @author Joel Sewing
  * @param <T>
  */
 public class StackImpl<T> implements Stack<T> {
 
+    private final Deque<T> data;
+
     public StackImpl() {
+        data = new ArrayDeque<>();
     }
 
+    /**
+     * Adds an item to the stack
+     *
+     * @param item to be added
+     */
     @Override
     public void push(T item) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        data.add(item);
     }
 
+    /**
+     * Pops an element from the stack
+     *
+     * @return T
+     */
     @Override
     public T pop() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return data.removeLast();
     }
 
+    /**
+     * Checks if the stack is empty
+     *
+     * @return boolean true if the stack is empty
+     */
     @Override
     public boolean isEmpty() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return data.isEmpty();
     }
 
+    /**
+     * Returns the size of elements on the stack
+     * @return the size of elements
+     */
     @Override
     public int size() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return data.size();
     }
 
     /**
@@ -42,7 +66,7 @@ public class StackImpl<T> implements Stack<T> {
      */
     @Override
     public Iterator<T> iterator() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return data.descendingIterator();
     }
 
 }
