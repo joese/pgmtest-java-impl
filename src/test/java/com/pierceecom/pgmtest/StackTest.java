@@ -58,4 +58,44 @@ public class StackTest {
         assertFalse(cut.isEmpty());
     }
 
+    @Test
+    public void testStackIncreasingSize() {
+        assertTrue(cut.isEmpty());
+        int numberToTestWith = 30000;
+        for (int i = 1; i <= numberToTestWith; i++) {
+            cut.push(String.valueOf(i));
+        }
+        assertEquals(numberToTestWith, cut.size());
+        assertFalse(cut.isEmpty());
+
+        int number = numberToTestWith;
+        for (String item : cut) {
+            assertEquals(String.valueOf(number--), item);
+        }
+
+    }
+
+    @Test(expected = NoSuchElementException.class)
+    public void testStackPopWithNullData() {
+        assertTrue(cut.isEmpty());
+        cut.pop();
+    }
+
+    @Test
+    public void testStackPopWithNullDataThenPush() {
+        assertTrue(cut.isEmpty());
+        cut.push("1");
+        cut.pop();
+        try {
+            cut.pop();
+        } catch (NoSuchElementException nee) {
+            // Nothing to do
+        }
+        assertTrue(cut.isEmpty());
+        String expected = "2";
+        cut.push(expected);
+        assertFalse(cut.isEmpty());
+        assertEquals(expected, cut.pop());
+    }
+
 }

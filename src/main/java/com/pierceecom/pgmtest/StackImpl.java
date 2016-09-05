@@ -1,8 +1,7 @@
 package com.pierceecom.pgmtest;
 
-import java.util.ArrayDeque;
-import java.util.Deque;
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 /**
  * Implementation of Stack
@@ -12,20 +11,51 @@ import java.util.Iterator;
  */
 public class StackImpl<T> implements Stack<T> {
 
-    private final Deque<T> data;
+    private final static int INITIAL_SIZE = 16;
 
-    public StackImpl() {
-        data = new ArrayDeque<>();
-    }
+    // Holding the amount of elements on stack
+    private int counter = 0;
+
+    // The data structure to be used
+    private T[] data;
 
     /**
      * Adds an item to the stack
      *
      * @param item to be added
      */
+    @SuppressWarnings("unchecked")
     @Override
     public void push(T item) {
-        data.add(item);
+        if (data == null) {
+            data = (T[]) new Object[INITIAL_SIZE];
+        } else if (data.length == counter) {
+            int newSize = data.length * 2; // Possible int overflow, would reach OutOfMemoryException before overflow
+            data = copyOf(newSize, data);
+        }
+        
+        data[counter++] = item;
+    }
+
+    /**
+     * Creating a new copy of T array with provided size
+     *
+     * @param data    to copy
+     * @param newSize of the returned array
+     * @return new array of type T with a capacity of newSize
+     * containing the elements from the parameter data
+     */
+    @SuppressWarnings("unchecked")
+    private T[] copyOf(final int newSize, final T... data) {
+        // Not using System.arraycopy or Array.copyOf
+        // they might be considered as members of Java Standard Lib
+        T[] newData = (T[]) new Object[newSize];
+
+        for (int i = 0; i < data.length; i++) {
+            newData[i] = data[i];
+        }
+
+        return newData;
     }
 
     /**
@@ -35,7 +65,10 @@ public class StackImpl<T> implements Stack<T> {
      */
     @Override
     public T pop() {
-        return data.removeLast();
+        if (counter == 0 || data == null) {
+            throw new NoSuchElementException("No element found");
+        }
+        return data[--counter];
     }
 
     /**
@@ -45,7 +78,7 @@ public class StackImpl<T> implements Stack<T> {
      */
     @Override
     public boolean isEmpty() {
-        return data.isEmpty();
+        return counter == 0;
     }
 
     /**
@@ -54,7 +87,7 @@ public class StackImpl<T> implements Stack<T> {
      */
     @Override
     public int size() {
-        return data.size();
+        return counter;
     }
 
     /**
@@ -66,7 +99,18 @@ public class StackImpl<T> implements Stack<T> {
      */
     @Override
     public Iterator<T> iterator() {
-        return data.descendingIterator();
-    }
+        return new Iterator<T>() {
+            private int position = counter;
 
+            @Override
+            public boolean hasNext() {
+                return position > 0;
+            }
+
+            @Override
+            public T next() {
+                return data[--position];
+            }
+        };
+    }
 }
